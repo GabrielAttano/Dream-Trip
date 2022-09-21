@@ -40,7 +40,6 @@ class DecolarDestinations(Enum):
     PALMAS = "PMW"
 
 
-
 class DecolarScraper():
 
     def __init__(self) -> None:
@@ -84,12 +83,10 @@ class DecolarScraper():
 
         driver.close()
         return flight_costs
-            
-            
-
-            
 
     def __format_search_url(self, start_destination: DecolarDestinations, end_destination: DecolarDestinations, departure_date):
         url = self.__base_search_url + start_destination.value + "/" + \
             end_destination.value + "/" + departure_date + "/1/0/0"
         return url
+
+
