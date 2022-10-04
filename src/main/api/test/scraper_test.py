@@ -1,4 +1,5 @@
-from scraper import DecolarDestinations, DecolarScraper, DateHandler
+from service.scraper.scraper_service import DecolarScraper
+from model.destinations.destinations_model import DecolarDestinations
 from selenium import webdriver
 import time
 
@@ -17,4 +18,4 @@ def test_scraping_time(total_destinations, end_destination: DecolarDestinations,
 
 # print(DateHandler.get_flight_dates(10, "2022-09-21", 5))
 driver = webdriver.Chrome()
-test_scraping_time(3, DecolarDestinations.PALMAS, "2022-09-30", driver)
+test_scraping_time(7, DecolarDestinations.PALMAS, "2022-10-25", driver)

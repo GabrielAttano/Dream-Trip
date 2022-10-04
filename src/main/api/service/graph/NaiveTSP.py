@@ -1,8 +1,10 @@
-from scraper import DecolarDestinations, DecolarScraper, DateHandler
+from service.scraper.scraper_service import DecolarScraper
+from service.date_and_time import DateAndTime
+from model.destinations.destinations_model import DecolarDestinations
 from selenium import webdriver
 
 def NaiveTSP(start_point: DecolarDestinations, destinations: list, start_date, stay_time):
-    flight_dates = DateHandler.get_flight_dates(stay_time, start_date, len(destinations)+1)
+    flight_dates = DateAndTime.get_dates_in_interval(stay_time, start_date, len(destinations)+1)
     minimum_cost_path = [start_point]
     aux_destinations = destinations.copy()
     

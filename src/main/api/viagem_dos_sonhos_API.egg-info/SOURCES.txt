@@ -1,0 +1,5 @@
+setup.py
+viagem_dos_sonhos_API.egg-info/PKG-INFO
+viagem_dos_sonhos_API.egg-info/SOURCES.txt
+viagem_dos_sonhos_API.egg-info/dependency_links.txt
+viagem_dos_sonhos_API.egg-info/top_level.txt
