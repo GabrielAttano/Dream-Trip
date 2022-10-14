@@ -1,13 +1,11 @@
-from ast import Try
-from typing import final
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-from model.destinations.destinations_model import DecolarDestinations
-
+from model.trip_package.package_model import DecolarDestinations
+from service.date_and_time import DateAndTime
+import datetime
 class DecolarScraper():
 
     __base_search_url = "https://www.decolar.com/shop/flights/results/oneway/"
@@ -18,20 +16,26 @@ class DecolarScraper():
         if start_destination.value == end_destination.value:
             return
 
+        
+        # if departure_date < datetime.date.today():
+        #     return
+
         costs = list()
 
-        url = cls.__format_search_url(start_destination, end_destination, departure_date)
+        url = cls.__format_search_url(start_destination, end_destination, str(departure_date))
         driver.get(url)
+
         try:
             element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "item-detail")))
-        finally:
-            print("loaded")
+        except:
+            print("Didnt wait for page to load")
+            return 
+
         soup = BeautifulSoup(driver.page_source, "lxml")
         final_prices = soup.find_all("p", class_="item-fare fare-price")
         for final_price in final_prices:
             final_price_amount = final_price.find("span", class_="amount price-amount").text
             costs.append(int(final_price_amount.replace(".", "")))
-        print(costs)
         return costs
 
     @classmethod

@@ -1,5 +1,5 @@
 from service.scraper.scraper_service import DecolarScraper
-from model.destinations.destinations_model import DecolarDestinations
+from model.trip_package.package_model import DecolarDestinations
 from selenium import webdriver
 import time
 

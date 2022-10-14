@@ -2,12 +2,12 @@ import re
 from datetime import timedelta, date
 
 class DateAndTime():
-    
+
     @classmethod
     def is_ISO_format(cls, date: str):
         """checks if the string is in ISO format"""
 
-        if bool(re.search("^\d{4}-\d{2}-\d{2}$", date)):
+        if re.search("^\d{4}-\d{2}-\d{2}$", date):
             return True
         else:
             return False
@@ -29,9 +29,10 @@ class DateAndTime():
         if not cls.is_ISO_format(initial_date):
             return
 
-        dates = list(date.fromisoformat(initial_date))
+        dates = list()
+        dates.append(date.fromisoformat(initial_date))
         for i in range(1, total):
-            dates.append(dates[i-1] + interval)
+            dates.append(dates[i-1] + timedelta(days=interval))
         
         return [x.isoformat() for x in dates]
             

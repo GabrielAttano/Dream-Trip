@@ -34,21 +34,19 @@ class DecolarDestinations(Enum):
     ARACAJU = "AJU"
     PALMAS = "PMW"
 
-class DestinationPackageModel():
-    def __init__(self, ) -> None:
+class Package():
+    def __init__(self, start_date: str, stay_time: int, destinations: list, start_destination: DecolarDestinations, user_id: str, package_id: str) -> None:
         
-        self.__start_date = None
-        self.__stay_time = 0
-        self.__destinations = list()
-        self.__start_destination = None
+        self.__start_date = start_date
+        self.__stay_time = stay_time
+        self.__destinations = destinations
+        self.__start_destination = start_destination
         self.__least_cost_path = list()
         self.__last_scrapped_date = None
-        self.__user_id = None
-    
-    def set_start_date(self, date: str):
-        if DateAndTime.is_ISO_format(date):
-            self.__start_date = date
+        self.__user_id = user_id
+        self.__package_id = package_id
 
+    
     def get_start_date(self, ):
         return self.__start_date
 
@@ -81,9 +79,8 @@ class DestinationPackageModel():
     def get_start_destination(self, ):
         return self.__start_destination
 
-    def set_least_cost_path(self, destination: DecolarDestinations, date: str):
-        if DateAndTime.is_ISO_format(date):
-            self.__least_cost_path.append(destination, date)
+    def set_least_cost_path(self, least_cost_path):
+        self.__least_cost_path = least_cost_path
     
     def get_least_cost_path(self, ):
         return self.__least_cost_path
@@ -100,3 +97,8 @@ class DestinationPackageModel():
 
     def get_user_id(self,):
         return self.__user_id
+
+    def get_package_id(self, ):
+        return self.__package_id
+
+    
