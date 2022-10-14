@@ -4,7 +4,7 @@ API responsável por fazer o scrapping do preço das passagens e autenticação 
 
 # Rotas
 
-## Get
+### Get
 
 /user/{user_id} - Rota para receber os dados do usuário. Recebe o user_id do usuário.
 
@@ -12,7 +12,7 @@ API responsável por fazer o scrapping do preço das passagens e autenticação 
 
 /packages/{package_id} - Rota para receber os dados de um pacote. Recebe o package_id do pacote.
 
-## Post
+### Post
 
 /user/create - Rota para criação de usuário. Recebe um body com email, username e password desejado.
 
