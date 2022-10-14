@@ -36,7 +36,7 @@ class UserService():
         user = User(new_user.email, new_user.username, new_user.password, str(uuid.uuid4()), str(date.today()))
         userRepository.set_user(user)
         return UserDTO(
-            email=user.get_username(),
+            email=user.get_email(),
             username=user.get_username(),
             id=user.get_id()
         )
