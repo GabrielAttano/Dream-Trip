@@ -14,3 +14,6 @@ class PackageDTO(BaseModel):
     start_destination: str
     user_id: str
     package_id: str
+
+class DestinationsDTO(BaseModel):
+    destinations: list

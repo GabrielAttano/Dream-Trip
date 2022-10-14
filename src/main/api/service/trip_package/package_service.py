@@ -61,9 +61,9 @@ class PackageService():
         package_repository = PackageRepository.instance()
         for package in package_repository.get_trip_packages():
             if package.get_package_id() == package_id:
-                destinations_list = cls.__convert_list_to_destinations(package.get_destinations())
+                destinations_list = cls.__parse_list_to_destinations(package.get_destinations())
                 print(destinations_list)
-                start_destination = cls.__convert_string_to_destinations(package.get_start_destination())
+                start_destination = cls.__parse_string_to_destinations(package.get_start_destination())
                 print(start_destination)
                 result = naive_tsp(
                     start_destination, 
@@ -73,22 +73,22 @@ class PackageService():
                 )
                 package.set_least_cost_path(result)
                 package.set_last_scrapped_date(str(date.today()))
-                return
+                return result
         return HTTPException(400, detail="Invalid package id")
                 
     @classmethod
-    def __convert_string_to_destinations(cls, string: str):
+    def __parse_string_to_destinations(cls, string: str):
 
         for destination in DecolarDestinations:
             if string == destination.value:
                 return destination
 
     @classmethod
-    def __convert_list_to_destinations(cls, destinations: list):
+    def __parse_list_to_destinations(cls, destinations: list):
 
         result = list()
         for destination in destinations:
-            parsed_destination = cls.__convert_string_to_destinations(destination)
+            parsed_destination = cls.__parse_string_to_destinations(destination)
             if parsed_destination:
                 result.append(parsed_destination)
             else:
