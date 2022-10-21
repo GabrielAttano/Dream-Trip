@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class User():
     def __init__(self, email: str, username: str, password: str, id: str, creation_date) -> None:
         self.__username = username
@@ -26,3 +27,6 @@ class User():
 
     def get_packages(self, ):
         return self.__packages
+
+    def set_password(self, new_password):
+        self.__password == new_password

@@ -1,3 +1,5 @@
+import string
+import random
 from fastapi import HTTPException
 from datetime import date
 import re
@@ -47,12 +49,39 @@ class UserService():
         for user in userRepository.get_users():
             if user.get_id() == user_id:
                 return UserDTO(
-                    email=user.get_username(),
+                    email=user.get_email(),
                     username=user.get_username(),
                     id=user.get_id()
                 )
         return HTTPException(400, detail="User not found")
-        
+
+    @classmethod
+    async def get_user_by_email(cls, email: str):
+        userRepository: UserRepository = UserRepository.instance()
+        for user in userRepository.get_users():
+            if user.get_email() == email:
+                return UserDTO(
+                    email=user.get_email(),
+                    username=user.get_username(),
+                    id=user.get_id()
+                )
+        return HTTPException(400, detail="User not found")
+
+    @classmethod
+    async def change_password(cls, request: CreateUserSchema):
+        userRepository: UserRepository = UserRepository.instance()
+        for user in userRepository.get_users():
+            if user.get_username() == request.username:
+                user.set_password(request.password)
+                return UserDTO(
+                    email=user.get_email(),
+                    username=user.get_email(),
+                    id=user.get_password()
+                )
+        return HTTPException(400, detail="User not found")
+
+
+
     @classmethod
     def __is_valid_email(cls, email: str):
         if re.search(r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+", email):
@@ -88,3 +117,14 @@ class UserService():
         
         return True
 
+
+def generateRecoveryCode():
+    new_code = ''
+    minusculas = string.ascii_lowercase
+    maiusculas = string.ascii_uppercase
+    numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    for i in range(7):
+        new_code = new_code + minusculas[random.randrange(len(minusculas))]
+    new_code = new_code + maiusculas[random.randrange(len(maiusculas))]
+    new_code = new_code + numeros[random.randrange(len(numeros))]
+    return new_code
