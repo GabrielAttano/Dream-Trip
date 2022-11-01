@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from service.user.user_service import UserService
 from repository.schemas.user_schemas import CreateUserSchema
+from repository.schemas.recovery_schemas import ForgotPasswordSchema, RecoverySchema
 
 user_router = APIRouter()
 
@@ -16,9 +17,9 @@ async def get_user(user_id: str):
 
 
 @user_router.post('/user/forgot_password')
-async def forgot_password(email: str):
-    return await UserService.get_user_by_email(email)
+async def forgot_password(forgotPasswordSchema: ForgotPasswordSchema):
+    return await UserService.get_user_by_email(forgotPasswordSchema.email);
 
 @user_router.post('/user/change_password')
-async def change_password(password: str):
-    return await UserService.change_password(password)
+async def change_password(recoverySchema: RecoverySchema):
+    return await UserService.change_password(recoverySchema)

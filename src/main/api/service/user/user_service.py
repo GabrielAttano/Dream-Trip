@@ -7,6 +7,7 @@ import uuid
 from model.user.user_model import User
 from repository.user.user_repository import UserRepository
 from repository.schemas.user_schemas import UserDTO, CreateUserSchema
+from repository.schemas.recovery_schemas import RecoverySchema
 
 
 class UserService():
@@ -68,15 +69,17 @@ class UserService():
         return HTTPException(400, detail="User not found")
 
     @classmethod
-    async def change_password(cls, request: CreateUserSchema):
+    async def change_password(cls, request: RecoverySchema):
         userRepository: UserRepository = UserRepository.instance()
         for user in userRepository.get_users():
-            if user.get_username() == request.username:
-                user.set_password(request.password)
+            if user.get_id() == request.user_id:
+                print(f"old password = {user.get_password()}")
+                user.set_password(request.new_password)
+                print(f"new password = {user.get_password()}")
                 return UserDTO(
                     email=user.get_email(),
                     username=user.get_email(),
-                    id=user.get_password()
+                    id=user.get_id()
                 )
         return HTTPException(400, detail="User not found")
 
