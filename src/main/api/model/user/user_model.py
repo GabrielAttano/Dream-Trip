@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from model.trip_package.package_model import Package
 
+
 class User():
     def __init__(self, email: str, username: str, password: str, id: str, creation_date) -> None:
         self.__username = username
@@ -30,3 +31,6 @@ class User():
     
     def set_packages(self, package: Package):
         self.__packages.append(package.get_package_id());
+
+    def set_password(self, new_password):
+        self.__password = new_password
