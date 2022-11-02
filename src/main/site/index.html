@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    
+
+    <title>Home</title>
+</head>
+<body>
+    <header class="barra-principal">
+        <a href="index.html" style="text-decoration:none">
+            <h1 style="color:#212121;">Dream Trip</h1>
+        </a>
+    </header>
+    <div class="Menu">
+		<nav>
+			<ul>
+                <li><a href="index.html">Criar pacote</a></li>
+				<li><a href="search_package.html">Pesquisar pacote</a></li>
+                <li><a href="login.html">Login</a></li>
+			</ul>
+		</nav>
+	</div>
+    <div class="Container">
+        <h4>Pesquise o seu próximo embarque abaixo:</h4>
+        <span id="destinosSelector" class="Container"></span>
+        <div class="Container">
+            <div>
+                <button type="button" onClick="newTrecho()" class="button"> Adicionar trecho </button>
+                <button type="button" onClick="removeTrecho()" class="button"> Remover trecho </button>
+            </div>
+            <div>
+                <button type="button" onClick="createPackage()" class="button"> Criar pacote </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/trechos.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+body{
+    background-color: whitesmoke;
+    margin: 0;
+}
+
+header{
+    display: table;
+    width: 101%;
+    padding: 0px 135px 0px 135px;
+}
+
+.button{
+    border-radius: 2px
+}
+
+.center{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.Menu{
+    text-align: center;
+    background-color: gray;
+}
+
+.Menu ul{
+    margin: 0;
+}
+
+.Menu li{
+    display: inline-block;
+    padding: 6px 3%;
+}
+.Menu li:hover{
+    font-weight: bold;
+}
+.Menu a{
+    text-decoration: none;
+    color: black;
+}
+section {
+    margin: auto;
+    width: 80%;
+}
+footer{
+    display: relative;
+    bottom: -1;
+    margin: 30px 0 30px 25%;
+    width: 50%;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+    line-height: 10px;
+}
+
+p{
+    text-align: justify; 
+    font-size: 18px;
+    margin: 0;
+}
+
+h1{
+    font-size: 45px;
+}
+
+h2{
+    margin-left: auto;
+    margin-right: auto;
+    width: 7em;
+}
+
+h3{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 18px;
+}
+
+h4{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+footer a:hover{
+    font-weight: bold;
+}
+
+footer a{
+    color: black;
+    text-decoration: none;
+}
+
+
+
+div{ 
+    text-align: center; 
+}

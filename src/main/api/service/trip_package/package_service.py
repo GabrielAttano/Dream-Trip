@@ -44,15 +44,14 @@ class PackageService():
         package_repository = PackageRepository.instance()
         for package in package_repository.get_trip_packages():
             if package.get_package_id() == package_id:
-                # return PackageDTO(
-                #     start_date=package.get_start_date(),
-                #     stay_time=package.get_stay_time(),
-                #     destinations=package.get_destinations(),
-                #     start_destination=package.get_start_destination(),
-                #     user_id=package.get_user_id(),
-                #     package_id=package.get_package_id()
-                # )
-                return package
+                return PackageDTO(
+                    start_date=package.get_start_date(),
+                    stay_time=package.get_stay_time(),
+                    destinations=package.get_destinations(),
+                    start_destination=package.get_start_destination(),
+                    user_id=package.get_user_id(),
+                    package_id=package.get_package_id()
+                )
         return HTTPException(400, detail="Invalid package id")
 
     @classmethod
