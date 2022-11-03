@@ -50,16 +50,6 @@ function setCookie(cookieName, cookieValue, expirationInDays) {
     document.cookie = cookieFormated;
 }
 
-function getCookie(cookieName) {
-    const cookies = document.cookie.split(";");
-    for (cookie of cookies) {
-        let [cookieKey, cookieValue] = cookie.split("=");
-        cookieKey = cookieKey.trim();
-        cookieValue = cookieValue.trim();
-        if (cookieKey === cookieName) return cookieValue;
-    }
-}
-
 function deleteCookie(cookieName) {
     const expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = `${cookieName}=; ${expires}; path=/;`;

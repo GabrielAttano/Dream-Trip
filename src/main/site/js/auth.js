@@ -20,15 +20,16 @@ function createLoginContainer() {
 function createUserContainer(username) {
     const userContainer = document.createElement("li");
     const userElement = document.createElement("a");
-    userElement.href = "login.html";
+    userElement.href = "search_package.html";
     userElement.innerHTML = username;
     userContainer.appendChild(userElement);
-    return userElement;
+    return userContainer;
 
 }
 
 function getCookie(cookieName) {
     const cookies = document.cookie.split(";");
+    if (cookies.length <= 1) return "";
     for (cookie of cookies) {
         let [cookieKey, cookieValue] = cookie.split("=");
         cookieKey = cookieKey.trim();
@@ -36,4 +37,5 @@ function getCookie(cookieName) {
         if (cookieKey === cookieName) return cookieValue;
     }
 }
+
 handleAuth();
