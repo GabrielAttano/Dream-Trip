@@ -2,6 +2,7 @@ from service.scraper.scraper_service import DecolarScraper
 from service.date_and_time import DateAndTime
 from model.trip_package.package_model import DecolarDestinations
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from datetime import date
 
 def naive_tsp(start_destination: DecolarDestinations, destinations: list, start_date, stay_time):
@@ -11,7 +12,7 @@ def naive_tsp(start_destination: DecolarDestinations, destinations: list, start_
     aux_destinations = destinations.copy()
     
     total_cost = 0
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     while True:
         lowest_price = 1000000 # Find better way to start lowest_price

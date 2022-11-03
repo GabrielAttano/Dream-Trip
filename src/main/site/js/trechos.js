@@ -60,7 +60,7 @@ function createSelect(placeholderName) {
         ["Salvador", "SSA"],
         ["Fortaleza", "FOR"],
         ["Vitória", "VIX"],
-        ["Goiânia", "GYX"],
+        ["Goiânia", "GYN"],
     ];
     
     const select = document.createElement("select");

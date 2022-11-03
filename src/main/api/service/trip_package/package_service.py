@@ -35,6 +35,7 @@ class PackageService():
                     stay_time=new_package.get_stay_time(),
                     destinations=new_package.get_destinations(),
                     start_destination=new_package.get_start_destination(),
+                    least_cost_path=new_package.get_least_cost_path(),
                     user_id=new_package.get_user_id(),
                     package_id=new_package.get_package_id()
                 )
@@ -49,6 +50,7 @@ class PackageService():
                     stay_time=package.get_stay_time(),
                     destinations=package.get_destinations(),
                     start_destination=package.get_start_destination(),
+                    least_cost_path=package.get_least_cost_path(),
                     user_id=package.get_user_id(),
                     package_id=package.get_package_id()
                 )

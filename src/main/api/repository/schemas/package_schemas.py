@@ -14,6 +14,7 @@ class PackageDTO(BaseModel):
     stay_time: int
     destinations: list
     start_destination: str
+    least_cost_path: list
     user_id: str
     package_id: str
 
