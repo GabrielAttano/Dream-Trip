@@ -32,11 +32,3 @@ class User():
         self.__password == new_password
 
 
-
-alan = User('as', 'username', 'password', 'id', "creation_date")
-
-print(f"senha alan {alan.get_password()}")
-
-alan.set_password('novasenha')
-
-print(f"senha alan {alan.get_password()}")

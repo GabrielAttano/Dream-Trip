@@ -78,7 +78,7 @@ class UserService():
                 return UserDTO(
                     email=user.get_email(),
                     username=user.get_email(),
-                    id=user.get_password()
+                    id=user.get_id()
                 )
         return HTTPException(400, detail="User not found")
 
