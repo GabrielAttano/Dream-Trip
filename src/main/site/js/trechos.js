@@ -78,6 +78,8 @@ function createPackage() {
     if (!isValidPackage()) return;
     destinos = getDestinos();
     const origem = document.getElementById("Origem").value;
+    const userID = getCookie("userID");
+    if (userID === "") return;
 
     const url = baseURL + "/packages/create";
     const Http = new XMLHttpRequest();
@@ -89,18 +91,19 @@ function createPackage() {
         "stay_time": 5,
         "destinations": destinos,
         "start_destination": origem,
-        "user_id": "fake_user_id"
+        "user_id": userID
     }));
     
     Http.onreadystatechange = function(){
         if(this.readyState==4 && this.status==200){
+            var json_resp = JSON.parse(Http.responseText);
             if (json_resp.status_code===400) {
-                alert("Você precisa estar logado para criar um pacote");
+                alert(json_resp);
                 return;
             }
-            var json_resp = JSON.parse(Http.responseText);
             console.log(json_resp);
             alert(`Pacote criado com ID: ${json_resp.package_id}`);
+            window.location.href = "index.html"
         }
     }
 }
@@ -144,6 +147,17 @@ function getDestinos() {
         destinos.push(document.getElementById(`Destino${i}`).value);
     }
     return destinos;
+}
+
+function getCookie(cookieName) {
+    const cookies = document.cookie.split(";");
+    if (cookies.length <= 1) return "";
+    for (cookie of cookies) {
+        let [cookieKey, cookieValue] = cookie.split("=");
+        cookieKey = cookieKey.trim();
+        cookieValue = cookieValue.trim();
+        if (cookieKey === cookieName) return cookieValue;
+    }
 }
 
 createTrechosContainer();

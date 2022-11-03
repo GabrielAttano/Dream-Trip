@@ -30,11 +30,6 @@ function login() {
     }
 }
 
-function logout() {
-    deleteCookie("userID");
-    deleteCookie("username");
-}
-
 function forgotPassword() {
     window.location.href = "forgot_password.html";
 }
@@ -49,9 +44,3 @@ function setCookie(cookieName, cookieValue, expirationInDays) {
     const cookieFormated = `${cookieName}=${cookieValue};expires=${date.toUTCString()};path=/`;
     document.cookie = cookieFormated;
 }
-
-function deleteCookie(cookieName) {
-    const expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    document.cookie = `${cookieName}=; ${expires}; path=/;`;
-}
-

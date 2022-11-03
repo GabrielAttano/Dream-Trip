@@ -20,7 +20,7 @@ function createLoginContainer() {
 function createUserContainer(username) {
     const userContainer = document.createElement("li");
     const userElement = document.createElement("a");
-    userElement.href = "search_package.html";
+    userElement.href = "userpage.html";
     userElement.innerHTML = username;
     userContainer.appendChild(userElement);
     return userContainer;
