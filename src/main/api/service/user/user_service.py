@@ -1,3 +1,4 @@
+from ast import And
 import string
 import random
 from fastapi import HTTPException
@@ -7,6 +8,7 @@ import uuid
 from model.user.user_model import User
 from repository.user.user_repository import UserRepository
 from repository.schemas.user_schemas import UserDTO, CreateUserSchema
+from repository.schemas.recovery_schemas import Change_Password_Schema, Forgot_Password_Schema
 
 
 class UserService():
@@ -56,10 +58,10 @@ class UserService():
         return HTTPException(400, detail="User not found")
 
     @classmethod
-    async def get_user_by_email(cls, email: str):
+    async def get_user_by_email(cls, email: Forgot_Password_Schema):
         userRepository: UserRepository = UserRepository.instance()
         for user in userRepository.get_users():
-            if user.get_email() == email:
+            if user.get_email() == email.email:
                 return UserDTO(
                     email=user.get_email(),
                     username=user.get_username(),
@@ -68,11 +70,11 @@ class UserService():
         return HTTPException(400, detail="User not found")
 
     @classmethod
-    async def change_password(cls, request: CreateUserSchema):
+    async def change_password(cls, request: Change_Password_Schema):
         userRepository: UserRepository = UserRepository.instance()
         for user in userRepository.get_users():
-            if user.get_username() == request.username:
-                user.set_password(request.password)
+            if user.get_username() == request.username and user.get_email() == request.email:
+                user.set_password(request.new_password)
                 return UserDTO(
                     email=user.get_email(),
                     username=user.get_email(),
