@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from model.user.user_model import User
 from service.user.user_service import UserService
 from repository.schemas.user_schemas import CreateUserSchema, AuthUserSchema
 from repository.schemas.recovery_schemas import ForgotPasswordSchema, RecoverySchema
@@ -11,7 +12,11 @@ async def create_user(user: CreateUserSchema):
 
 @user_router.get('/user/{user_id}')
 async def get_user(user_id: str):
-    return await UserService.get_user(user_id)
+    return await UserService.get_user_by_id(user_id)
+
+@user_router.get('/user/{user_id}/packages')
+async def get_user_package(user_id: str):
+    return await UserService.get_user_packages(user_id)
 
 @user_router.post('/user/forgot_password')
 async def forgot_password(forgotPasswordSchema: ForgotPasswordSchema):

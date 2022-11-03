@@ -71,5 +71,4 @@ function updatePackage() {
             alert('Pacote atualizado');
         }
     }
-
 }

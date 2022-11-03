@@ -6,7 +6,7 @@ import re
 import uuid
 from model.user.user_model import User
 from repository.user.user_repository import UserRepository
-from repository.schemas.user_schemas import UserDTO, CreateUserSchema
+from repository.schemas.user_schemas import CreateUserSchema, parseUserToDTO
 from repository.schemas.recovery_schemas import RecoverySchema
 
 
@@ -38,35 +38,37 @@ class UserService():
 
         user = User(new_user.email, new_user.username, new_user.password, str(uuid.uuid4()), str(date.today()))
         userRepository.set_user(user)
-        return UserDTO(
-            email=user.get_email(),
-            username=user.get_username(),
-            id=user.get_id()
-        )
+        return parseUserToDTO(user)
     
     @classmethod
-    async def get_user(cls, user_id: str):
+    async def get_user_by_id(cls, user_id: str, DTO = True):
         userRepository: UserRepository = UserRepository.instance()
         for user in userRepository.get_users():
             if user.get_id() == user_id:
-                return UserDTO(
-                    email=user.get_email(),
-                    username=user.get_username(),
-                    id=user.get_id()
-                )
+                if DTO:
+                    return parseUserToDTO(user)
+                else:
+                    return user
         return HTTPException(400, detail="User not found")
 
     @classmethod
-    async def get_user_by_email(cls, email: str):
+    async def get_user_by_email(cls, email: str, DTO = False):
         userRepository: UserRepository = UserRepository.instance()
         for user in userRepository.get_users():
             if user.get_email() == email:
-                return UserDTO(
-                    email=user.get_email(),
-                    username=user.get_username(),
-                    id=user.get_id()
-                )
+                if DTO:
+                    return parseUserToDTO(user)
+                else:
+                    return user
         return HTTPException(400, detail="User not found")
+
+    @classmethod 
+    async def get_user_packages(cls, user_id: str):
+        user: User = await cls.get_user_by_id(user_id, False)
+        if type(user) != User:
+            return HTTPException(400, detail="invalid userID")
+        return user.get_packages()
+
 
     @classmethod
     async def change_password(cls, request: RecoverySchema):
@@ -76,11 +78,7 @@ class UserService():
                 print(f"old password = {user.get_password()}")
                 user.set_password(request.new_password)
                 print(f"new password = {user.get_password()}")
-                return UserDTO(
-                    email=user.get_email(),
-                    username=user.get_username(),
-                    id=user.get_id()
-                )
+                return parseUserToDTO(user)
         return HTTPException(400, detail="User not found")
 
     @classmethod
@@ -89,15 +87,10 @@ class UserService():
         for user in userRepository.get_users():
             if user.get_email() == email:
                 if user.get_password() == password:
-                    return UserDTO(
-                        email=user.get_email(),
-                        username=user.get_username(),
-                        id=user.get_id()
-                    )
+                    return parseUserToDTO(user)
                 else:
                     return HTTPException(400, detail="Invalid password")
         return HTTPException(400, detail="No users found with the specified email");
-
 
     @classmethod
     def __is_valid_email(cls, email: str):

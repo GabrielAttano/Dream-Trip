@@ -94,8 +94,13 @@ function createPackage() {
     
     Http.onreadystatechange = function(){
         if(this.readyState==4 && this.status==200){
+            if (json_resp.status_code===400) {
+                alert("Você precisa estar logado para criar um pacote");
+                return;
+            }
             var json_resp = JSON.parse(Http.responseText);
-            console.log(`Pacote criado com ID: ${json_resp.package_id}`);
+            console.log(json_resp);
+            alert(`Pacote criado com ID: ${json_resp.package_id}`);
         }
     }
 }
@@ -103,7 +108,7 @@ function createPackage() {
 function isValidPackage() {
     const origem = document.getElementById("Origem").value;
     if (origem == "none") {
-        console.log("Origem não pode ser none");
+        alert("Deve selecionar origem");
         return false;
     }
 
@@ -114,17 +119,17 @@ function isValidPackage() {
         const element = destinos[i];
 
         if (element == "none") {
-            console.log("Todos os destinos devem estar preenchidos");
+            alert("Todos os destinos devem estar preenchidos");
             return false;
         }
         if (element == origem) {
-            console.log("Destino não pode se repetir com origem")
+            alert("Destino não pode se repetir com origem")
             return false;
         }
 
         for (let j = i+1; j < destinos.length; j++) {
             if (element == destinos[j]) {
-                console.log("Destinos não podem se repetir");
+                alert("Destinos não podem se repetir");
                 return false;
             }
         }

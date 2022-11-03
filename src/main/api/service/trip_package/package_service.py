@@ -4,6 +4,8 @@ from datetime import date
 from repository.schemas.package_schemas import PackagesSchema, PackageDTO
 from repository.trip_package.package_repository import PackageRepository
 from model.trip_package.package_model import DecolarDestinations, Package
+from model.user.user_model import User
+from service.user.user_service import UserService
 from service.date_and_time import DateAndTime
 from service.scraper.scraper_service import DecolarScraper
 from service.graph.NaiveTSP import naive_tsp
@@ -18,6 +20,11 @@ class PackageService():
         if package.start_destination in package.destinations:
             return HTTPException(400, detail="Start destination shouldnt be on the destinations list")
 
+        user: User = await UserService.get_user_by_id(package.user_id, DTO=False)
+        if type(user) != User:
+            print(type(user))
+            return HTTPException(400, detail="invalid userID")
+
         new_package = Package(
             start_date=package.start_date,
             stay_time=package.stay_time,
@@ -29,7 +36,7 @@ class PackageService():
 
         package_repository = PackageRepository.instance()
         package_repository.set_trip_package(new_package)
-
+        user.set_packages(new_package)
         return PackageDTO(
                     start_date=new_package.get_start_date(),
                     stay_time=new_package.get_stay_time(),
@@ -55,7 +62,7 @@ class PackageService():
                     package_id=package.get_package_id()
                 )
         return HTTPException(400, detail="Invalid package id")
-
+           
     @classmethod
     async def update_package(cls, package_id: str):
         
@@ -76,7 +83,7 @@ class PackageService():
                 package.set_last_scrapped_date(str(date.today()))
                 return result
         return HTTPException(400, detail="Invalid package id")
-                
+    
     @classmethod
     def __parse_string_to_destinations(cls, string: str):
 
