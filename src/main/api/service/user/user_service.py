@@ -78,11 +78,25 @@ class UserService():
                 print(f"new password = {user.get_password()}")
                 return UserDTO(
                     email=user.get_email(),
-                    username=user.get_email(),
+                    username=user.get_username(),
                     id=user.get_id()
                 )
         return HTTPException(400, detail="User not found")
 
+    @classmethod
+    async def authenticate_user(cls, email: str, password: str):
+        userRepository: UserRepository = UserRepository.instance()
+        for user in userRepository.get_users():
+            if user.get_email() == email:
+                if user.get_password() == password:
+                    return UserDTO(
+                        email=user.get_email(),
+                        username=user.get_username(),
+                        id=user.get_id()
+                    )
+                else:
+                    return HTTPException(400, detail="Invalid password")
+        return HTTPException(400, detail="No users found with the specified email");
 
 
     @classmethod

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    
 
-    <title>Home</title>
+    <title>Criar conta</title>
 </head>
 <body>
     <header class="barra-principal">
@@ -14,6 +13,7 @@
             <h1 style="color:#212121;">Dream Trip</h1>
         </a>
     </header>
+
     <div class="Menu">
 		<nav>
 			<ul class="links">
@@ -22,21 +22,28 @@
 			</ul>
 		</nav>
 	</div>
+
     <div class="Container">
-        <h4>Pesquise o seu próximo embarque abaixo:</h4>
-        <span id="destinosSelector" class="Container"></span>
-        <div class="Container">
-            <div>
-                <button type="button" onClick="newTrecho()" class="button"> Adicionar trecho </button>
-                <button type="button" onClick="removeTrecho()" class="button"> Remover trecho </button>
-            </div>
-            <div>
-                <button type="button" onClick="createPackage()" class="button"> Criar pacote </button>
-            </div>
+        <br>
+        <div>
+            email:
+            <input type="text" id="email">
+        </div>
+        <div>
+            username:
+            <input type="text" id="username">
+        </div>
+        <div>
+            password:
+            <input type="password" id="password">
+        </div>
+        <div>
+            <button type="button" onClick="createAccount()" class="button"> Criar conta </button>
+            <button type="button" onClick="loginPage()" class="button"> Já sou cadastrado </button>
         </div>
     </div>
 
-    <script src="js/trechos.js"></script>
+    <script src="js/new_account.js"></script>
     <script src="js/auth.js"></script>
 </body>
 </html>

@@ -91,6 +91,7 @@ function createPackage() {
         "start_destination": origem,
         "user_id": "fake_user_id"
     }));
+    
     Http.onreadystatechange = function(){
         if(this.readyState==4 && this.status==200){
             var json_resp = JSON.parse(Http.responseText);

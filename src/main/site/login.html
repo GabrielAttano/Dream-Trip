@@ -16,22 +16,22 @@
 
     <div class="Menu">
 		<nav>
-			<ul>
-				<li><a href="index.html">Criar pacote</a></li>
+			<ul class="links">
+                <li><a href="index.html">Criar pacote</a></li>
 				<li><a href="search_package.html">Pesquisar pacote</a></li>
-                <li><a href="login.html">Login</a></li>
 			</ul>
 		</nav>
 	</div>
 
     <div class="Container">
-        Usuário:
+        <br>
         <div>
-            <textarea id="username" cols="25" placeholder="usuario"></textarea>
+            email:
+            <input type="text" id="email">
         </div>
-        Senha:
         <div>
-            <textarea id="password" cols="25" placeholder="senha"></textarea>
+            password:
+            <input type="password" id="password">
         </div>
         <div>
             <button type="button" onClick="login()" class="button"> Login </button>
@@ -42,7 +42,7 @@
         </div>
 
     </div>
-
     <script src="js/login.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>
