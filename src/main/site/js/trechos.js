@@ -78,9 +78,10 @@ function createPackage() {
     destinos = getDestinos();
     const origem = document.getElementById("Origem").value;
     const userID = getCookie("userID");
-    if (userID === "") {
-        alert("Você deve estar logado para criar um pacote");
-        return;
+    const start_date = document.getElementById("start-date").value;
+    const stay_time = document.getElementById("stay-time").value;
+    if (!userID) {
+        return alert("Você deve estar logado para criar um pacote");
     }
 
     const url = baseURL + "/packages/create";
@@ -89,8 +90,8 @@ function createPackage() {
     Http.setRequestHeader("Accept", "application/json");
     Http.setRequestHeader("Content-Type", "application/json");
     Http.send(JSON.stringify({
-        "start_date": "2022-11-30",
-        "stay_time": 5,
+        "start_date": start_date,
+        "stay_time": stay_time,
         "destinations": destinos,
         "start_destination": origem,
         "user_id": userID

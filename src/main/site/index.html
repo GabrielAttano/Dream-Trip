@@ -25,6 +25,15 @@
     <div class="Container">
         <h4>Pesquise o seu próximo embarque abaixo:</h4>
         <span id="destinosSelector" class="Container"></span>
+        <div>
+            <label for="start">Data de partida:</label>
+            <input type="date" id="start-date" name="trip-start"
+                value="2022-11-06"
+                min="2022-01-01" max="2023-12-31">
+
+                <label for="quantity">Tempo de estadia:</label>
+                <input type="number" id="stay-time" name="quantity" min="1" max="30">
+        </div>
         <div class="Container">
             <div>
                 <button type="button" onClick="newTrecho()" class="button"> Adicionar trecho </button>
