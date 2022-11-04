@@ -101,7 +101,7 @@ function createPackage() {
         if(this.readyState==4 && this.status==200){
             var json_resp = JSON.parse(Http.responseText);
             if (json_resp.status_code===400) {
-                alert(json_resp);
+                alert(json_resp.detail);
                 return;
             }
             alert(`Pacote criado com ID: ${json_resp.package_id}`);
