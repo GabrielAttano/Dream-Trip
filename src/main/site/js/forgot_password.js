@@ -19,7 +19,6 @@ function forgotPassword() {
                alert(json_resp.detail);
                 return;
             }
-            console.log("Email enviado");
             window.location.href = "login.html"
             alert(`Email enviado para ${email}`);
         }

@@ -22,7 +22,6 @@ function login() {
                 alert(json_resp.detail);
                 return;
             }
-            console.log("Autenticado com sucesso");
             setCookie("userID", json_resp.id, 1);
             setCookie("username", json_resp.username, 1);
             window.location.href = "index.html";

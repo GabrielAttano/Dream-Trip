@@ -25,7 +25,6 @@ function newTrecho() {
     const containerDestinos = document.getElementsByClassName("ContainerDestinos")[0];
     containerDestinos.appendChild(createDestinoSelect());
     totalTrechos++;
-    console.log(totalTrechos);
 }
 
 function removeTrecho () {
@@ -79,7 +78,10 @@ function createPackage() {
     destinos = getDestinos();
     const origem = document.getElementById("Origem").value;
     const userID = getCookie("userID");
-    if (userID === "") return;
+    if (userID === "") {
+        alert("Você deve estar logado para criar um pacote");
+        return;
+    }
 
     const url = baseURL + "/packages/create";
     const Http = new XMLHttpRequest();
@@ -101,7 +103,6 @@ function createPackage() {
                 alert(json_resp);
                 return;
             }
-            console.log(json_resp);
             alert(`Pacote criado com ID: ${json_resp.package_id}`);
             window.location.href = "index.html"
         }

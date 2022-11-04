@@ -29,7 +29,6 @@ function createAccount() {
                 alert(json_resp.detail);
                 return;
             }
-            console.log("Conta criada com sucesso");
             window.location.href = "index.html"
             alert('conta criada com sucesso');
         }
