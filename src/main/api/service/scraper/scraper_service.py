@@ -9,9 +9,11 @@ import datetime
 class DecolarScraper():
 
     __base_search_url = "https://www.decolar.com/shop/flights/results/oneway/"
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
 
     @classmethod
-    def get_flight_prices(cls, start_destination: DecolarDestinations, end_destination: DecolarDestinations, departure_date, driver: webdriver.Chrome):
+    def get_flight_prices(cls, start_destination: DecolarDestinations, end_destination: DecolarDestinations, departure_date, driver: webdriver.Chrome(options= options)):
 
         if start_destination.value == end_destination.value:
             return
