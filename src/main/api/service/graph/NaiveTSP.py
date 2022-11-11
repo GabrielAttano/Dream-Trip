@@ -12,7 +12,7 @@ def naive_tsp(start_destination: DecolarDestinations, destinations: list, start_
     aux_destinations = destinations.copy()
     
     total_cost = 0
-    
+
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options= options)
@@ -43,8 +43,6 @@ def naive_tsp(start_destination: DecolarDestinations, destinations: list, start_
     result = DecolarScraper.get_flight_prices(start_destination, temp, start_date, driver)
     minimum_cost_result.append(((start_destination, temp), min(result), start_date))
     minimum_cost_result.reverse()
-    print(minimum_cost_result)
-    
     return minimum_cost_result
 
 
