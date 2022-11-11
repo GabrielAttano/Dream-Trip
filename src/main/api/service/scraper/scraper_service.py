@@ -4,16 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from model.trip_package.package_model import DecolarDestinations
-from service.date_and_time import DateAndTime
-import datetime
 class DecolarScraper():
 
     __base_search_url = "https://www.decolar.com/shop/flights/results/oneway/"
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
 
     @classmethod
-    def get_flight_prices(cls, start_destination: DecolarDestinations, end_destination: DecolarDestinations, departure_date, driver: webdriver.Chrome(options= options)):
+    def get_flight_prices(cls, start_destination: DecolarDestinations, end_destination: DecolarDestinations, departure_date, driver: webdriver.Chrome):
 
         if start_destination.value == end_destination.value:
             return

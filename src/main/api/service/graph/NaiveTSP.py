@@ -12,7 +12,10 @@ def naive_tsp(start_destination: DecolarDestinations, destinations: list, start_
     aux_destinations = destinations.copy()
     
     total_cost = 0
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options= options)
 
     while True:
         lowest_price = 1000000 # Find better way to start lowest_price
