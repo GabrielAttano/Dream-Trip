@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import DestinosSelector from '../../components/DestinosSelect';
 import SecondaryButton from '../../components/SecondaryButton';
+import LoginModal from '../../components/LoginModal';
 import { black, white } from '../../config/colors';
 import {
   BlackContainer,
@@ -36,6 +37,7 @@ function CreatePackage() {
   return (
     <>
       <Header />
+      <LoginModal />
       <BlackContainer>
         <GrayContainer>
           <GrayContainerItem>

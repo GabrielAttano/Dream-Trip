@@ -1,12 +1,16 @@
-import React, { useCallback } from 'react';
-
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Title, HeaderContainer, LoginContainer } from './styled';
 import PrimaryButton from '../PrimaryButton';
 
 function Header() {
-  const handleClick = useCallback(() => {
-    console.log();
-  });
+  const dispath = useDispatch();
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispath({
+      type: 'SHOW_MODAL',
+    });
+  };
 
   return (
     <HeaderContainer>

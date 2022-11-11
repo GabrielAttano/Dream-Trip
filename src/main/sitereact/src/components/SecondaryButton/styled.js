@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { black, white } from '../../config/colors';
 
 export const Button = styled.button`
-  background-color: ${(props) =>
-    props.buttonColor ? props.buttonColor : black};
-  color: ${(props) => (props.textColor ? props.textColor : white)};
+  background-color: ${(props) => props.buttonColor};
+  color: ${(props) => props.textColor};
   text-align: center;
   text-decoration: none;
   display: inline-block;
