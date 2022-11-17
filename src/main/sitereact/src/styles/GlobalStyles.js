@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { white } from '../config/colors';
+import RobotoWoff from '../fonts/Roboto.woff';
+import RobotoWoff2 from '../fonts/Roboto.woff2';
 
 export default createGlobalStyle`
   background-color: ${white};
@@ -9,6 +11,7 @@ export default createGlobalStyle`
     padding: 0;
     outline: none;
     box-sizing: border-box;
+    font-family: 'Roboto';
   }
 
   body {
@@ -29,6 +32,15 @@ export default createGlobalStyle`
 
   ul {
     list-style: none;
+  }
+
+  @font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'),
+    url(${RobotoWoff2}) format('woff2'),
+    url(${RobotoWoff}) format('woff');
+    font-weight: 300;
+    font-style: normal;
   }
 `;
 

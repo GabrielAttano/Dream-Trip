@@ -1,15 +1,17 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { Title, HeaderContainer, LoginContainer } from './styled';
+import ModalHandler from '../ModalHandler';
 import PrimaryButton from '../PrimaryButton';
 
 function Header() {
-  const dispath = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const isLogged = useSelector((state) => state.isLogged);
+
   const handleClick = (e) => {
     e.preventDefault();
-    dispath({
-      type: 'SHOW_MODAL',
-    });
+    setShowModal(true);
   };
 
   return (
@@ -17,7 +19,16 @@ function Header() {
       <Title>DREAMTRIP.COM</Title>
       <LoginContainer>
         <a href="Ajuda">ajuda</a>
-        <PrimaryButton buttonText="Entrar" handleClick={handleClick} />
+        {isLogged ? (
+          <PrimaryButton buttonText="Perfil" handleClick={handleClick} />
+        ) : (
+          <PrimaryButton buttonText="Entrar" handleClick={handleClick} />
+        )}
+        {/* <PrimaryButton buttonText="Entrar" handleClick={handleClick} /> */}
+        <ModalHandler
+          showModal={showModal}
+          closeModal={() => setShowModal(false)}
+        />
       </LoginContainer>
     </HeaderContainer>
   );

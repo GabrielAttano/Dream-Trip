@@ -29,6 +29,16 @@ export const ModalContent = styled.div`
   align-items: flex-start;
 `;
 
+export const TextContainer = styled.div`
+  font-size: 14;
+  color: ${Colors.gray750};
+`;
+
+export const HrContainer = styled.div`
+  display: block;
+  width: 100%;
+  padding-right: 70px;
+`;
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,36 +51,18 @@ export const ButtonContainer = styled.div`
 export const Button = styled.button`
   outline: none;
   border: none;
+  font-size: 16px;
   background-color: transparent;
   background-repeat: no-repeat;
 `;
 
-export const ContinueButton = styled.button`
-  outline: 0.1px;
-  border-width: 1px;
-  border-radius: 5px;
-  width: 100%;
-  height: 40px;
-  background-color: ${Colors.white};
-`;
-
-export const ContinueButtonContainer = styled.div`
+export const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-export const TextContainer = styled.div`
-  font-size: 14;
-  color: ${Colors.gray750};
-`;
-
-export const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   align-items: flex-start;
-  padding-top: 26px;
-  padding-bottom: 18px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  gap: 24px;
+  color: ${Colors.black};
+  font-size: 16px;
 `;

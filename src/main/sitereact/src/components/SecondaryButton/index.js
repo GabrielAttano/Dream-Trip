@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import { black, white } from '../../config/colors';
 import { Button } from './styled';
 
-function SecondaryButton({ buttonText, buttonColor, textColor }) {
+function SecondaryButton({ buttonText, buttonColor, textColor, handleClick }) {
   return (
-    <Button buttonColor={buttonColor} textColor={textColor}>
+    <Button
+      buttonColor={buttonColor}
+      textColor={textColor}
+      onClick={handleClick}
+    >
       {buttonText}
     </Button>
   );
@@ -21,6 +25,7 @@ SecondaryButton.propTypes = {
   buttonText: PropTypes.string,
   buttonColor: PropTypes.string,
   textColor: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default SecondaryButton;

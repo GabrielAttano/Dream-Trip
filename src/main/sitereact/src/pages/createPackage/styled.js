@@ -31,8 +31,9 @@ export const GrayContainer = styled.div`
 export const GrayContainerItem = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   gap: 24px;
 `;
 
