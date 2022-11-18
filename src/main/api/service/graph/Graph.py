@@ -1,8 +1,14 @@
+import sys
+
+
 class Node:
-    def __init__(self, id_node):
+    def __init__(self, id_node: int, name:str):
         self.visited = 0
-        self.adj_list = []
+        self.adj_list = list()
         self.id = id_node
+        self.dist = 9999999
+        self.menor_caminho = list()
+        self.name = name
 
     def add_adjacency(self, connection):
         self.adj_list.append(connection)
@@ -19,6 +25,7 @@ class Node:
 class Graph:
     def __init__(self, size):
         self.nodes = []
+        self.size = size
 
         for i in range(size):
             self.nodes.append(Node(i))
@@ -33,12 +40,3 @@ class Graph:
     def add_connection(self, node1, node2, distance):
         self.nodes[node1].add_adjacency([node2, distance])
         self.nodes[node2].add_adjacency([node1,distance])
-
-graph = Graph(5)
-
-for i in range(4):
-    node1, node2 = input("informe os nodes a serem adicionados\n").split()
-    distance = int(input("informe a distancia\n"))
-    graph.add_connection(int(node1), int(node2), distance)
-
-graph.show_nodes()
