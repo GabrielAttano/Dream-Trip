@@ -33,7 +33,6 @@ def djikstra(grafo: Graph , root,destination):
             for j in grafo.nodes[aux].adj_list:
                 cost = j[1] + grafo.nodes[aux].dist
                 if cost < grafo.nodes[j[0]].dist:
-                    print(f"entrei com os valores  cost: {cost} raiz: {aux} node: {j[0]} ")
                     grafo.nodes[j[0]].dist = cost
                     grafo.nodes[j[0]].menor_caminho.append(aux)
                 heappush(heap, (j[0], cost))

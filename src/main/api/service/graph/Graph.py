@@ -1,11 +1,11 @@
 class Node:
-    def __init__(self, id_node: int, name:str):
+    def __init__(self, id_node: int):
         self.visited = 0
         self.adj_list = list()
         self.id = id_node
         self.dist = 9999999
         self.menor_caminho = list()
-        self.name = name
+        self.name = str()
 
     def add_adjacency(self, connection):
         self.adj_list.append(connection)
